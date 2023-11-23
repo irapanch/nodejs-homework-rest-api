@@ -1,7 +1,7 @@
 const { Contact } = require("../../models/contacts/contact");
 const { RequestError } = require("../../helpers");
 
-const updateById = async (req, res) => {
+const updateStatusContact = async (req, res) => {
   if (Object.keys(req.body).length === 0) {
     throw RequestError(400, "missing fields");
   }
@@ -10,7 +10,7 @@ const updateById = async (req, res) => {
   if (!result) {
     throw RequestError(404, "Not found");
   }
-  res.status(201).json(result);
+  res.status(200).json(result);
 };
 
-module.exports = updateById;
+module.exports = updateStatusContact;
