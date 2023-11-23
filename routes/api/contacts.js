@@ -15,4 +15,9 @@ router.put(
   validateBody(schemas.addSchema),
   ctrlWrapper(ctrl.updateById)
 );
+router.patch(
+  "/:id/favorite",
+  validateBody(schemas.updateFavoriteSchema),
+  ctrlWrapper(ctrl.updateStatusContact)
+);
 module.exports = router;
