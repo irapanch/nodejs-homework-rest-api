@@ -4,8 +4,8 @@ const {
   registerSchema,
   loginSchema,
   subscriptionSchema,
+  verifyEmailSchema,
 } = require("../schemas/users");
-// const allowedSubscriptions = ["starter", "pro", "business"];
 
 const userSchema = new Schema(
   {
@@ -19,7 +19,6 @@ const userSchema = new Schema(
       type: String,
       required: [true, "Email is required"],
       unique: true,
-      // match: /^\S+@\S+\.\S+$/,
       match: emailRegexp,
     },
     subscription: {
@@ -35,6 +34,14 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: [true, "Verify token is required"],
+    },
   },
   { versionKey: false, timestamps: true }
 );
@@ -42,6 +49,7 @@ const schemas = {
   registerSchema,
   loginSchema,
   subscriptionSchema,
+  verifyEmailSchema,
 };
 
 const User = model("user", userSchema);

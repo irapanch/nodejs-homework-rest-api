@@ -12,6 +12,17 @@ router.post(
   validateBody(schemas.registerSchema),
   ctrlWrapper(ctrl.register)
 );
+
+// verification - http://localhost:3000/api/auth/verify/:verificationToken # verification-request
+router.get("/verify/:verificationToken", ctrlWrapper(ctrl.verify));
+
+// POST verification http://localhost:3000/api/users/verify
+router.post(
+  "/verify",
+  validateBody(schemas.verifyEmailSchema),
+  ctrlWrapper(ctrl.resendEmail)
+);
+
 // login - http://localhost:3000/api/auth/login
 router.post(
   "/login",
